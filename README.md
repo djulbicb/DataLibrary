@@ -48,7 +48,7 @@ DataCountry country = dl.getCountryRandom();
         <dependency>
             <groupId>com.github.djulbicb</groupId>
             <artifactId>DataLibrary</artifactId>
-            <version>v2.0</version>
+            <version>v9.0</version>
         </dependency>
     </dependencies>
 ```
@@ -90,7 +90,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation ('com.github.djulbicb:datalibrary:v2.0'){
+    implementation ('com.github.djulbicb:datalibrary:v9.0'){
         exclude group: 'org.hamcrest', module:'hamcrest-core'
     }
 }
