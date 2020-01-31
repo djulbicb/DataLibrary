@@ -3,14 +3,14 @@ import data.DataLibrary;
 class Main {
     public static void main(String[] args) {
         DataLibrary data = DataLibrary.getEnglishData();
-        data.getFirstNameMale();
-        data.getFirstNameFemale();
+        data.getNameMale();
+        data.getNameFemale();
         data.getAgeTeen();
         data.getSentence();
-        data.getImgUrlRandom(300);
+        String imgUrlSquare = data.getImgUrlSquare(300);
         data.getCountryRandom();
 
+        System.out.println(data.getImagePlaceholderSquare(300));
 
-        System.out.println(data.getDouble(300, 1000));
     }
 }

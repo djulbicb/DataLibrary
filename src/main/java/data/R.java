@@ -9,6 +9,7 @@ class R {
     public static class General {
       public static final String list_of_countries_cities_and_capital =
           "data/general/list_of_countries_cities_and_capital.json";
+      public static final String lorem_ipsum = "data/general/lorem_ipsum.json";
     }
 
     public static class Germany {

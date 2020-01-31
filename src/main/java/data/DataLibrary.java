@@ -11,11 +11,13 @@ public class DataLibrary implements IDataLibrary {
 
     private final DataSupplier data;
     private final DataCountryService dataCountryService;
+    private int iterator = 0;
     private final Random random = new Random();
 
     private DataLibrary(DataSupplier data){
         this.data = data;
         dataCountryService = new DataCountryService();
+
     }
 
     public static DataLibrary getSerbianData() {
@@ -34,185 +36,6 @@ public class DataLibrary implements IDataLibrary {
 
     public static DataLibrary getGermanData() {
         return new DataLibrary(new GermanDataSupplier());
-    }
-
-    @Override
-    public String getFirstNameMale() {
-        List<String> firstNameMaleList = data.firstNameMaleList;
-        return firstNameMaleList.get(random.nextInt(firstNameMaleList.size()));
-    }
-
-    @Override
-    public String getFirstNameFemale() {
-        List<String> firstNameFemaleList = data.firstNameFemaleList;
-        return firstNameFemaleList.get(random.nextInt(firstNameFemaleList.size()));
-    }
-
-    @Override
-    public String getFirstNameRandom() {
-        if (random.nextBoolean()){
-            return getFirstNameMale();
-        }else{
-            return getFirstNameFemale();
-        }
-    }
-
-    @Override
-    public String getLastName() {
-        List<String> lastNameList = data.lastNameList;
-        return lastNameList.get(random.nextInt(lastNameList.size()));
-    }
-
-    @Override
-    public List<DataCountry> getCountries() {
-        return dataCountryService.getCountryList();
-    }
-
-    @Override
-    public DataCountry getCountryRandom() {
-        return getCountries().get(random.nextInt(getCountries().size()));
-    }
-
-    @Override
-    public int getInt(int bound) {
-        return random.nextInt(bound);
-    }
-
-    @Override
-    public int getInt(int minBound, int maxBound) {
-       return getNumberInRange(minBound, maxBound);
-    }
-
-    @Override
-    public int getAgeTeen() {
-        return getNumberInRange(13, 18);
-    }
-
-    @Override
-    public int getAgeMinor() {
-        return getNumberInRange(0, 18);
-    }
-
-    @Override
-    public int getAgeAdult() {
-        return getNumberInRange(18, 80);
-    }
-
-    @Override
-    public int getAgeChild() {
-        return getNumberInRange(0, 10);
-    }
-
-    @Override
-    public double getDouble(double bound) {
-        return getNumberInRange(0, bound);
-    }
-
-    @Override
-    public double getDouble(double minBound, double maxBound) {
-        return getNumberInRange(minBound, maxBound);
-    }
-
-    @Override
-    public String getImgUrlRandom(int size) {
-        return getFinalRedirectedURL(getImgUrlRandomId(size));
-    }
-
-    @Override
-    public String getImgUrlRandom(int sizeX, int sizeY) {
-        return getFinalRedirectedURL(getImgUrlRandomId(sizeX, sizeY));
-    }
-
-    @Override
-    public String getImgUrlRandomId(int size) {
-        return "https://picsum.photos/" + size;
-    }
-
-    @Override
-    public String getImgUrlRandomId(int sizeX, int sizeY) {
-        return "https://picsum.photos/" + sizeX + "/" + sizeY;
-    }
-
-    private static String getFinalRedirectedURL(String url) {
-        try {
-            URLConnection con = new URL( url ).openConnection();
-            con.connect();
-            InputStream is = con.getInputStream();
-            is.close();
-            return con.getURL().toString();
-        }catch (Exception e){
-            return "";
-        }
-    }
-
-    @Override
-    public String getStreetAddresse() {
-        List<String> streetList = data.streetList;
-        return streetList.get(random.nextInt(streetList.size())) + " " + getInt(1,100);
-    }
-
-    @Override
-    public String getCity() {
-        List<String> cityList = data.cityList;
-        return cityList.get(random.nextInt(cityList.size()));
-    }
-
-    @Override
-    public String getWord() {
-        List<String> wordsList = data.wordsList;
-        return wordsList.get(random.nextInt(wordsList.size()));
-    }
-
-    @Override
-    public String getSentence() {
-        return getSentence(10);
-    }
-
-    @Override
-    public String getSentence(int count) {
-        int wordCount = getInt(4, count);
-        StringBuilder sb = new StringBuilder();
-
-        // Randomly capitalize words
-        for (int i = 0; i < wordCount; i++) {
-            String word = getWord();
-            if (random.nextInt(10) < 3){
-                word = capitalizeString(word);
-            }
-            sb.append(word);
-            sb.append(" ");
-        }
-
-        String s = sb.toString().trim().concat(".");
-        s = s.substring(0,1).toUpperCase() + s.substring(1);
-        return s;
-    }
-
-    /**
-     * Paragraph in average has 3-8 sentences. This creates 5 sentences by default
-     */
-    @Override
-    public String getParagraph() {
-        return getParagraph(5);
-    }
-
-    @Override
-    public String getParagraph(int count) {
-        int sentenceCount = getInt(3, count);
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < count; i++) {
-            String sentence = getSentence();
-            sb.append(sentence);
-            sb.append(" ");
-        }
-
-        return sb.toString().trim();
-    }
-
-    @Override
-    public String getCountry() {
-        return data.getCountry();
     }
 
     private int getNumberInRange(int minBound, int maxBound){
@@ -236,4 +59,272 @@ public class DataLibrary implements IDataLibrary {
         return firstChar + restOfWord;
     }
 
+    private static String getFinalRedirectedURL(String url) {
+        try {
+            URLConnection con = new URL( url ).openConnection();
+            con.connect();
+            InputStream is = con.getInputStream();
+            is.close();
+            return con.getURL().toString();
+        }catch (Exception e){
+            return "";
+        }
+    }
+
+
+    @Override
+    public String getName() {
+        if (random.nextBoolean()){
+            return getNameMale();
+        }else{
+            return getNameFemale();
+        }
+    }
+
+    @Override
+    public String getNameMale() {
+        List<String> firstNameMaleList = data.getFirstNameMaleList();
+        return firstNameMaleList.get(random.nextInt(firstNameMaleList.size()));
+    }
+
+    @Override
+    public String getNameFemale() {
+        List<String> firstNameFemaleList = data.getFirstNameFemaleList();
+        return firstNameFemaleList.get(random.nextInt(firstNameFemaleList.size()));
+    }
+
+    @Override
+    public String getSurname() {
+        List<String> lastNameList = data.getLastNameList();
+        return lastNameList.get(random.nextInt(lastNameList.size()));
+    }
+
+    @Override
+    public List<DataCountry> getCountries() {
+        return dataCountryService.getCountryList();
+    }
+
+    @Override
+    public DataCountry getCountryRandom() {
+        return getCountries().get(random.nextInt(getCountries().size()));
+    }
+
+
+    @Override
+    public int iterator() {
+        return this.iterator++;
+    }
+
+    @Override
+    public int iteratorBy(int incrementBy) {
+        int currentIncrement = this.iterator;
+        this.iterator+=incrementBy;
+        return currentIncrement;
+    }
+
+    @Override
+    public int getInt() {
+        return getNumberInRange(0, 9999);
+    }
+
+    @Override
+    public int getIntBound(int bound) {
+        return getNumberInRange(0, bound);
+    }
+
+    @Override
+    public int getIntInRange(int minBound, int maxBound) {
+        return getNumberInRange(minBound, maxBound);
+    }
+
+    @Override
+    public float getFloat() {
+        return (float) getDouble();
+    }
+
+    @Override
+    public float getFloatBound(float bound) {
+        return (float) getDoubleBound(bound);
+    }
+
+    @Override
+    public float getFloatInRange(float minRange, float maxRange) {
+        return (float) getDoubleInRange(minRange, maxRange);
+    }
+
+    @Override
+    public double getDouble() {
+        return getNumberInRange(0d, 9999d);
+    }
+
+    @Override
+    public double getDoubleBound(double bound) {
+        return getNumberInRange(0d, bound);
+    }
+
+    @Override
+    public double getDoubleInRange(double minRange, double maxRange) {
+        return getNumberInRange(minRange, maxRange);
+    }
+
+    @Override
+    public boolean getBoolean() {
+        return random.nextBoolean();
+    }
+
+    @Override
+    public Object pickRandom(Object... objects) {
+        int randomIndex = random.nextInt(objects.length);
+        return objects[randomIndex];
+    }
+
+    @Override
+    public String print(String print) {
+        return print;
+    }
+
+    @Override
+    public int getAgeTeen() {
+        return getIntInRange(13, 18);
+    }
+
+    @Override
+    public int getAgeMinor() {
+        return getIntInRange(0, 18);
+    }
+
+    @Override
+    public int getAgeAdult() {
+        return getIntInRange(18, 80);
+    }
+
+    @Override
+    public int getAgeChild() {
+        return getIntInRange(0, 10);
+    }
+
+    @Override
+    public String getImgUrlSquare(int size) {
+        String url = "https://picsum.photos/" + size;
+        return getFinalRedirectedURL(url);
+    }
+
+    @Override
+    public String getImgUrl(int sizeX, int sizeY) {
+        String url =  "https://picsum.photos/" + sizeX + "/" + sizeY;
+        return getFinalRedirectedURL(url);
+    }
+
+    @Override
+    public String getImagePlaceholderSquare(int size) {
+        String url = "http://via.placeholder.com/" + size;
+        return getFinalRedirectedURL(url);
+    }
+
+    @Override
+    public String getImagePlaceholder(int width, int height) {
+        String url = "http://via.placeholder.com/" + width + "x" + height;
+        return getFinalRedirectedURL(url);
+    }
+
+    @Override
+    public String getStreet() {
+        List<String> streetList = data.getStreetList();
+        return streetList.get(random.nextInt(streetList.size()));
+    }
+
+    @Override
+    public String getCity() {
+        List<String> cityList = data.getCityList();
+        return cityList.get(random.nextInt(cityList.size()));
+    }
+
+    @Override
+    public String getCountry() {
+        return data.getCountry();
+    }
+
+    @Override
+    public String getWord() {
+        List<String> wordsList = data.getWordsList();
+        return wordsList.get(random.nextInt(wordsList.size()));
+    }
+
+    @Override
+    public String getSentence() {
+        return getSentenceBound(getIntInRange(4,10));
+    }
+
+    @Override
+    public String getSentenceBound(int wordCount) {
+            StringBuilder sb = new StringBuilder();
+
+            // Randomly capitalize words
+            for (int i = 0; i < wordCount; i++) {
+                String word = getWord();
+                if (random.nextInt(10) < 3){
+                    word = capitalizeString(word);
+                }
+                sb.append(word);
+                sb.append(" ");
+            }
+
+            String s = sb.toString().trim().concat(".");
+            s = s.substring(0,1).toUpperCase() + s.substring(1);
+            return s;
+        }
+
+    @Override
+    public String getSentenceInRange(int minWordCount, int maxWordCount) {
+        return getSentenceBound(getIntInRange(minWordCount,maxWordCount));
+    }
+
+    @Override
+    public String getParagraph() {
+        return getParagraphBound(getIntInRange(4, 10));
+    }
+
+    @Override
+    public String getParagraphBound(int boundSentenceCount) {
+        int sentenceCount = getIntInRange(3, boundSentenceCount);
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < boundSentenceCount; i++) {
+            String sentence = getSentence();
+            sb.append(sentence);
+            sb.append(" ");
+        }
+
+        return sb.toString().trim();
+    }
+
+    @Override
+    public String getParagraphInRange(int minSentenceCount, int maxSentenceCount) {
+        return getParagraphBound(getIntInRange(minSentenceCount, maxSentenceCount));
+    }
+
+    @Override
+    public String loremIpsum() {
+        List<String> loremList = data.getLoremList();
+        return loremList.get(random.nextInt(loremList.size()));
+    }
+
+    @Override
+    public String loremIpsumBound(int bound) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < bound; i++) {
+            sb.append(loremIpsum() + " ");
+        }
+        return sb.toString().trim();
+    }
+
+    @Override
+    public String loremIpsumInRange(int minSentenceCount, int maxSentenceCount) {
+        int count = getIntInRange(minSentenceCount, maxSentenceCount);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < count; i++) {
+            sb.append(loremIpsum());
+        }
+        return sb.toString().trim();
+    }
 }

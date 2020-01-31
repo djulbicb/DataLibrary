@@ -4,15 +4,16 @@ import java.io.IOException;
 import java.util.List;
 
 class EnglishDataSupplier extends DataSupplier {
+
     public EnglishDataSupplier() {
         try {
-            this.firstNameMaleList = ResourceUtility.readLinesFromResources(R.Data.English.list_of_names_male);
-            this.firstNameFemaleList = ResourceUtility.readLinesFromResources(R.Data.English.list_of_names_female);
-            this.lastNameList = ResourceUtility.readLinesFromResources(R.Data.English.list_of_surnames);
-            this.cityList = ResourceUtility.readLinesFromResources(R.Data.English.list_of_cities);
-            this.wordsList = ResourceUtility.readLinesFromResources(R.Data.English.list_of_words);
-            this.streetList = ResourceUtility.readLinesFromResources(R.Data.English.list_of_street_names);
-            this.country = "England";
+            setFirstNameMaleList(ResourceUtility.readLinesFromResources(R.Data.English.list_of_names_male));
+            setFirstNameFemaleList(ResourceUtility.readLinesFromResources(R.Data.English.list_of_names_female));
+            setLastNameList(ResourceUtility.readLinesFromResources(R.Data.English.list_of_surnames));
+            setCityList(ResourceUtility.readLinesFromResources(R.Data.English.list_of_cities));
+            setWordsList(ResourceUtility.readLinesFromResources(R.Data.English.list_of_words));
+            setStreetList( ResourceUtility.readLinesFromResources(R.Data.English.list_of_street_names));
+            setCountry("England");
         } catch (IOException e) {
             throw new RuntimeException("Cant read English data");
         }
@@ -22,15 +23,15 @@ class EnglishDataSupplier extends DataSupplier {
 class RomanianDataSupplier extends DataSupplier {
     public RomanianDataSupplier() {
         try {
-            this.firstNameMaleList = ResourceUtility.readLinesFromResources(R.Data.Romania.list_of_names_male);
-            this.firstNameFemaleList = ResourceUtility.readLinesFromResources(R.Data.Romania.list_of_names_female);
-            this.lastNameList = ResourceUtility.readLinesFromResources(R.Data.Romania.list_of_surnames);
-            this.cityList = ResourceUtility.readLinesFromResources(R.Data.Romania.list_of_cities);
-            this.wordsList = ResourceUtility.readLinesFromResources(R.Data.Romania.list_of_words);
-            this.streetList = ResourceUtility.readLinesFromResources(R.Data.Romania.list_of_street_names);
-            this.country = "România";
+            setFirstNameMaleList(ResourceUtility.readLinesFromResources(R.Data.Romania.list_of_names_male));
+            setFirstNameFemaleList(ResourceUtility.readLinesFromResources(R.Data.Romania.list_of_names_female));
+            setLastNameList(ResourceUtility.readLinesFromResources(R.Data.Romania.list_of_surnames));
+            setCityList(ResourceUtility.readLinesFromResources(R.Data.Romania.list_of_cities));
+            setWordsList(ResourceUtility.readLinesFromResources(R.Data.Romania.list_of_words));
+            setStreetList( ResourceUtility.readLinesFromResources(R.Data.Romania.list_of_street_names));
+            setCountry("România");
         } catch (IOException e) {
-            throw new RuntimeException("Cant read Romania data");
+            throw new RuntimeException("Cant read Romanian data");
         }
     }
 }
@@ -39,15 +40,15 @@ class RomanianDataSupplier extends DataSupplier {
 class SerbianDataSupplier extends DataSupplier {
     public SerbianDataSupplier() {
         try {
-            this.firstNameMaleList = ResourceUtility.readLinesFromResources(R.Data.Serbia.list_of_names_male);
-            this.firstNameFemaleList = ResourceUtility.readLinesFromResources(R.Data.Serbia.list_of_names_female);
-            this.lastNameList = ResourceUtility.readLinesFromResources(R.Data.Serbia.list_of_surnames);
-            this.cityList = ResourceUtility.readLinesFromResources(R.Data.Serbia.list_of_cities);
-            this.wordsList = ResourceUtility.readLinesFromResources(R.Data.Serbia.list_of_words);
-            this.streetList = ResourceUtility.readLinesFromResources(R.Data.Serbia.list_of_street_names);
-            this.country = "Srbija";
+            setFirstNameMaleList(ResourceUtility.readLinesFromResources(R.Data.Serbia.list_of_names_male));
+            setFirstNameFemaleList(ResourceUtility.readLinesFromResources(R.Data.Serbia.list_of_names_female));
+            setLastNameList(ResourceUtility.readLinesFromResources(R.Data.Serbia.list_of_surnames));
+            setCityList(ResourceUtility.readLinesFromResources(R.Data.Serbia.list_of_cities));
+            setWordsList(ResourceUtility.readLinesFromResources(R.Data.Serbia.list_of_words));
+            setStreetList( ResourceUtility.readLinesFromResources(R.Data.Serbia.list_of_street_names));
+            setCountry("Srbija");
         } catch (IOException e) {
-            throw new RuntimeException("Cant read serbia data");
+            throw new RuntimeException("Cant read Serbia data");
         }
 
     }
@@ -56,15 +57,15 @@ class SerbianDataSupplier extends DataSupplier {
 class FrenchDataSupplier extends DataSupplier {
     public FrenchDataSupplier() {
         try {
-            this.firstNameMaleList = ResourceUtility.readLinesFromResources(R.Data.France.list_of_names_male);
-            this.firstNameFemaleList = ResourceUtility.readLinesFromResources(R.Data.France.list_of_names_female);
-            this.lastNameList = ResourceUtility.readLinesFromResources(R.Data.France.list_of_surnames);
-            this.cityList = ResourceUtility.readLinesFromResources(R.Data.France.list_of_cities);
-            this.wordsList = ResourceUtility.readLinesFromResources(R.Data.France.list_of_words);
-            this.streetList = ResourceUtility.readLinesFromResources(R.Data.France.list_of_street_names);
-            this.country = "France";
+            setFirstNameMaleList(ResourceUtility.readLinesFromResources(R.Data.France.list_of_names_male));
+            setFirstNameFemaleList(ResourceUtility.readLinesFromResources(R.Data.France.list_of_names_female));
+            setLastNameList(ResourceUtility.readLinesFromResources(R.Data.France.list_of_surnames));
+            setCityList(ResourceUtility.readLinesFromResources(R.Data.France.list_of_cities));
+            setWordsList(ResourceUtility.readLinesFromResources(R.Data.France.list_of_words));
+            setStreetList( ResourceUtility.readLinesFromResources(R.Data.France.list_of_street_names));
+            setCountry("France");
         } catch (IOException e) {
-            throw new RuntimeException("Cant read serbia data");
+            throw new RuntimeException("Cant read France data");
         }
 
     }
@@ -73,15 +74,15 @@ class FrenchDataSupplier extends DataSupplier {
 class GermanDataSupplier extends DataSupplier {
     public GermanDataSupplier() {
         try {
-            this.firstNameMaleList = ResourceUtility.readLinesFromResources(R.Data.Germany.list_of_names_male);
-            this.firstNameFemaleList = ResourceUtility.readLinesFromResources(R.Data.Germany.list_of_names_female);
-            this.lastNameList = ResourceUtility.readLinesFromResources(R.Data.Germany.list_of_surnames);
-            this.cityList = ResourceUtility.readLinesFromResources(R.Data.Germany.list_of_cities);
-            this.wordsList = ResourceUtility.readLinesFromResources(R.Data.Germany.list_of_words);
-            this.streetList = ResourceUtility.readLinesFromResources(R.Data.Germany.list_of_street_names);
-            this.country = "Deutschland";
+            setFirstNameMaleList(ResourceUtility.readLinesFromResources(R.Data.Germany.list_of_names_male));
+            setFirstNameFemaleList(ResourceUtility.readLinesFromResources(R.Data.Germany.list_of_names_female));
+            setLastNameList(ResourceUtility.readLinesFromResources(R.Data.Germany.list_of_surnames));
+            setCityList(ResourceUtility.readLinesFromResources(R.Data.Germany.list_of_cities));
+            setWordsList(ResourceUtility.readLinesFromResources(R.Data.Germany.list_of_words));
+            setStreetList( ResourceUtility.readLinesFromResources(R.Data.Germany.list_of_street_names));
+            setCountry("Deutschland");
         } catch (IOException e) {
-            throw new RuntimeException("Cant read serbia data");
+            throw new RuntimeException("Cant read Germany data");
         }
 
     }
@@ -89,16 +90,21 @@ class GermanDataSupplier extends DataSupplier {
 
 abstract class DataSupplier {
 
-    List<String> firstNameMaleList;
-    List<String> firstNameFemaleList;
-    List<String> lastNameList;
-    List<String> cityList;
-    List<String> streetList;
-    List<String> wordsList;
-    String country;
+    private List<String> firstNameMaleList;
+    private List<String> firstNameFemaleList;
+    private List<String> lastNameList;
+    private List<String> cityList;
+    private List<String> streetList;
+    private List<String> wordsList;
+    private List<String> loremList;
+    private String country;
 
-    DataSupplier(){
-
+    DataSupplier() {
+        try {
+            setLoremList( ResourceUtility.readLinesFromResources(R.Data.General.lorem_ipsum));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public List<String> getStreetList() {
@@ -155,6 +161,14 @@ abstract class DataSupplier {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public List<String> getLoremList() {
+        return loremList;
+    }
+
+    public void setLoremList(List<String> loremList) {
+        this.loremList = loremList;
     }
 }
 
