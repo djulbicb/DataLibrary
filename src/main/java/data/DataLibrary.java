@@ -1,10 +1,10 @@
 package data;
 
+import annotations.ExposeToApi;
+
 import java.io.InputStream;
-import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -39,50 +39,6 @@ public class DataLibrary implements IDataLibrary {
     public static DataLibrary getGermanData() {
         return new DataLibrary(new GermanDataSupplier());
     }
-
-    public List<Method> getExposedMethods(){
-        List<Method> methods = new ArrayList<>();
-        for (Method method : DataLibrary.class.getMethods()) {
-            if (method.isAnnotationPresent(ExposeToApi.class)){
-                methods.add(method);
-            }
-        }
-        return methods;
-    }
-
-    private int getNumberInRange(int minBound, int maxBound){
-        return ThreadLocalRandom.current().nextInt(minBound, maxBound + 1);
-    }
-
-    private double getNumberInRange(double minBound, double maxBound){
-        return ThreadLocalRandom.current().nextDouble(minBound, maxBound + 1);
-    }
-
-    private String capitalizeString(String str){
-        String firstChar = "";
-        String restOfWord = "";
-
-        if (str.length() > 0){
-            firstChar = str.toUpperCase().charAt(0) + "";
-        }
-        if (str.length() > 0){
-            restOfWord = str.substring(1).toLowerCase();
-        }
-        return firstChar + restOfWord;
-    }
-
-    private static String getFinalRedirectedURL(String url) {
-        try {
-            URLConnection con = new URL( url ).openConnection();
-            con.connect();
-            InputStream is = con.getInputStream();
-            is.close();
-            return con.getURL().toString();
-        }catch (Exception e){
-            return "";
-        }
-    }
-
 
     @Override
     @ExposeToApi
@@ -377,5 +333,38 @@ public class DataLibrary implements IDataLibrary {
             sb.append(loremIpsum());
         }
         return sb.toString().trim();
+    }
+
+    private int getNumberInRange(int minBound, int maxBound){
+        return ThreadLocalRandom.current().nextInt(minBound, maxBound + 1);
+    }
+
+    private double getNumberInRange(double minBound, double maxBound){
+        return ThreadLocalRandom.current().nextDouble(minBound, maxBound + 1);
+    }
+
+    private String capitalizeString(String str){
+        String firstChar = "";
+        String restOfWord = "";
+
+        if (str.length() > 0){
+            firstChar = str.toUpperCase().charAt(0) + "";
+        }
+        if (str.length() > 0){
+            restOfWord = str.substring(1).toLowerCase();
+        }
+        return firstChar + restOfWord;
+    }
+
+    private static String getFinalRedirectedURL(String url) {
+        try {
+            URLConnection con = new URL( url ).openConnection();
+            con.connect();
+            InputStream is = con.getInputStream();
+            is.close();
+            return con.getURL().toString();
+        }catch (Exception e){
+            return "";
+        }
     }
 }

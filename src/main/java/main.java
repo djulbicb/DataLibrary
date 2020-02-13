@@ -1,4 +1,6 @@
 import data.DataLibrary;
+import data.DataLibraryMetadata;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -7,20 +9,14 @@ import java.util.List;
 
 class Main {
     public static void main(String[] args) {
-        DataLibrary data = DataLibrary.getEnglishData();
-        data.getNameMale();
-        data.getNameFemale();
-        data.getAgeTeen();
-        data.getSentence();
-        String imgUrlSquare = data.getImgUrlSquare(300);
-        data.getCountryRandom();
-
-        System.out.println(data.getImagePlaceholderSquare(300));
-
-        for (Method method : data.getExposedMethods()) {
-            System.out.println(method);
+        DataLibraryMetadata meta = new DataLibraryMetadata();
+        for (Method method : meta.getExposedMethods()) {
+            //System.out.println(method.getName());
         }
 
+        for (Method method : meta.getMethodsThatReturnType("string", "int")) {
+            System.out.println(method);
+        }
 
     }
 }
