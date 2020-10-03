@@ -81,6 +81,10 @@ public class DataLibrary implements IDataLibrary {
         return getCountries().get(random.nextInt(getCountries().size()));
     }
 
+    @Override
+    public void resetIterator() {
+        this.iterator = 0;
+    }
 
     @Override
     @ExposeToApi

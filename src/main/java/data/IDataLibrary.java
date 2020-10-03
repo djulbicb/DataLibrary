@@ -11,6 +11,7 @@ interface IDataLibrary {
     List<DataCountry> getCountries();
     DataCountry getCountryRandom();
 
+    void resetIterator();
     int iterator();
     int iteratorBy( int incrementBy);
 
