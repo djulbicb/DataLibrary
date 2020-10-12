@@ -25,7 +25,7 @@ dl.getImgUrlRandom(300);                        // https://picsum.photos/id/577/
 - German `DataLibrary.getGermanData();`
 - French `DataLibrary.getFrenchData();`
 
-for more variations use data from `DataCountry` that contains name of the capitol and major cities in that country.
+for more country data variations use data from `DataCountry` that contains name of the capitol and major cities in that country.
 ```
 DataLibrary dl = DataLibrary.getEnglishData();
 List<DataCountry> countries = dl.getCountries();
